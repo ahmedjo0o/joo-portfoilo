@@ -20,7 +20,7 @@ export default function ProfessionalExperience() {
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
                     {[
                         {
                             company: "Middle East News FZ LLC",
@@ -57,22 +57,21 @@ export default function ProfessionalExperience() {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: i * 0.1 }}
                             viewport={{ once: true }}
-                            className="group flex flex-col gap-4 p-6 border border-white/5 rounded-2xl hover:bg-white/5 transition-all duration-300"
+                            className="flex items-start gap-6"
                         >
-                            <div className="flex items-start gap-4">
-                                <OrgLogo src={row.logo} alt={row.company} className="w-10 h-10 mt-1" />
-                                <h3 className="text-lg md:text-xl font-bold text-white leading-snug">
-                                    {row.company}
-                                    <span className="text-white/30 mx-2">—</span>
-                                    {row.role}
-                                    <span className="text-white/30 mx-2">—</span>
-                                    <span className="text-violet-400 font-mono text-base">{row.dates}</span>
-                                </h3>
-                            </div>
+                            <OrgLogo src={row.logo} alt={row.company} className="w-28 h-16 shrink-0" />
 
-                            <p className="text-white/50 text-sm md:text-base">
-                                {row.details}
-                            </p>
+                            <div>
+                                <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{row.company}</h3>
+                                <div className="text-sm md:text-base mb-3">
+                                    <span className="text-white font-semibold">{row.role}</span>
+                                    <span className="text-white/30 mx-2">|</span>
+                                    <span className="text-violet-400 font-mono">{row.dates}</span>
+                                </div>
+                                <p className="text-white/50 text-sm md:text-base">
+                                    {row.details}
+                                </p>
+                            </div>
                         </motion.div>
                     ))}
                 </div>
