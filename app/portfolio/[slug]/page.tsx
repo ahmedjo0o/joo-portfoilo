@@ -69,7 +69,7 @@ export default async function ProjectPage({
                                 <PlaceholderMedia label="Image" gradient={next.gradient} text={next.category} />
                             )}
                         </div>
-                        <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+                        <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-violet-400 transition-colors">
                             {next.title}
                         </h3>
                     </Link>

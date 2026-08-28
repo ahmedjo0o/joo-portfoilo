@@ -25,7 +25,7 @@ export default function Showreel() {
                 <div className="flex justify-center">
                     <Link
                         href="/portfolio"
-                        className="inline-block px-8 py-4 bg-emerald-500 text-white text-xl font-bold rounded-full hover:bg-emerald-600 transition-all shadow-lg hover:shadow-emerald-500/20"
+                        className="inline-block px-8 py-4 bg-accent text-white text-xl font-bold rounded-full hover:bg-accent-hover transition-all shadow-lg hover:shadow-accent/30"
                     >
                         Portfolio
                     </Link>

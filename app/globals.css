@@ -2,9 +2,12 @@
 
 @theme {
   --font-sans: var(--font-roboto);
-  --font-serif: var(--font-roboto);
+  --font-display: var(--font-barlow-condensed);
 
   --color-foreground: rgba(255, 255, 255, 0.7);
+
+  --color-accent: var(--color-violet-700);
+  --color-accent-hover: var(--color-violet-800);
 }
 
 body {

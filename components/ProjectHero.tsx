@@ -32,10 +32,10 @@ export default function ProjectHero({ project }: { project: Project }) {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.9, ease: EASE }}
                 >
-                    <div className="text-emerald-400 text-sm font-mono uppercase tracking-widest mb-4">
+                    <div className="text-violet-400 text-sm font-mono uppercase tracking-widest mb-4">
                         {project.category}
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6 max-w-3xl leading-tight">
+                    <h1 className="text-4xl md:text-6xl font-display font-bold text-white mb-6 max-w-3xl leading-tight">
                         {project.title}
                     </h1>
                     <p className="text-white/60 text-lg max-w-2xl mb-10">{project.summary}</p>

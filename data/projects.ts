@@ -32,7 +32,7 @@ export const projects: Project[] = [
         role: "Lead Motion Designer",
         year: "2025",
         tools: ["Cinema 4D", "Redshift", "After Effects"],
-        gradient: "from-emerald-900 via-black to-black",
+        gradient: "from-violet-950 via-black to-black",
         summary:
             "A 3D product reveal built for Orbit's global launch keynote, blending procedural motion with cinematic lighting.",
         blocks: [
@@ -83,7 +83,7 @@ export const projects: Project[] = [
         role: "Motion Designer",
         year: "2024",
         tools: ["After Effects", "Cinema 4D", "Trapcode Suite"],
-        gradient: "from-emerald-950 via-zinc-900 to-black",
+        gradient: "from-violet-950 via-zinc-900 to-black",
         summary: "An opening title sequence for an independent thriller, built around typographic reveals in fog and light.",
         blocks: [
             { type: "embed", caption: "Opening titles" },
@@ -124,7 +124,7 @@ export const projects: Project[] = [
         role: "Motion Designer",
         year: "2023",
         tools: ["After Effects", "Photoshop"],
-        gradient: "from-emerald-900 via-emerald-950 to-black",
+        gradient: "from-violet-950 via-indigo-950 to-black",
         summary: "A bold, high-contrast set of vertical social cuts built to stop the scroll for a sportswear drop.",
         blocks: [
             { type: "gif", alt: "Vertical cut loop 1" },

@@ -3,12 +3,12 @@
 import { motion } from "framer-motion";
 
 const skills = [
-    { name: "After Effects", level: 95 },
-    { name: "Premiere Pro", level: 90 },
-    { name: "Cinema 4D", level: 85 },
+    { name: "After Effects", level: 90 },
+    { name: "Premiere Pro", level: 88 },
+    { name: "Cinema 4D", level: 78 },
     { name: "Photoshop", level: 85 },
-    { name: "Ai Tools", level: 80 },
-    { name: "Illustrator", level: 70 },
+    { name: "Illustrator", level: 75 },
+    { name: "Blender", level: 55 },
 ];
 
 export default function CreativeExperience() {
@@ -22,9 +22,9 @@ export default function CreativeExperience() {
                     viewport={{ once: true }}
                     className="mb-16 text-center md:text-left"
                 >
-                    <h2 className="text-4xl md:text-6xl font-serif font-bold mb-4">+10 Years <br /> Creative Experience</h2>
+                    <h2 className="text-4xl md:text-6xl font-display font-bold mb-4">+8 Years <br /> Creative Experience</h2>
                     <p className="text-white/60 text-lg max-w-xl">
-                        Mastering the art of motion and visual storytelling through a decade of dedication.
+                        Mastering the art of motion and visual storytelling through eight years of dedication.
                     </p>
                 </motion.div>
 
@@ -41,12 +41,16 @@ export default function CreativeExperience() {
                                     whileInView={{ width: `${skill.level}%` }}
                                     transition={{ duration: 1.5, delay: index * 0.1, ease: "easeOut" }}
                                     viewport={{ once: true }}
-                                    className="h-full bg-emerald-500 rounded-full"
+                                    className="h-full bg-accent rounded-full"
                                 />
                             </div>
                         </div>
                     ))}
                 </div>
+
+                <p className="mt-8 text-white/50 text-sm md:text-base">
+                    <span className="text-white/70 font-medium">Other Tools:</span> Ai Tools, Audition, Character Animator
+                </p>
             </div>
         </section>
     );

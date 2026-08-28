@@ -118,14 +118,14 @@ export default function VisualScroll() {
     const y3 = useTransform(scrollYProgress, [0.59, 0.9], [50, 0]);
 
     return (
-        <div ref={containerRef} className="h-[400vh] relative bg-black text-white/90 font-serif">
+        <div ref={containerRef} className="h-[400vh] relative bg-black text-white/90 font-display">
             {isLoading && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black text-white">
                     <div className="flex flex-col items-center gap-4">
                         {/* Loading Bar Only - Minimal */}
                         <div className="w-64 h-1 bg-white/10 rounded-full overflow-hidden">
                             <div
-                                className="h-full bg-emerald-500 transition-all duration-100 ease-out"
+                                className="h-full bg-violet-600 transition-all duration-100 ease-out"
                                 style={{ width: `${(loadedCount / FRAME_COUNT) * 100}%` }}
                             />
                         </div>
@@ -147,7 +147,7 @@ export default function VisualScroll() {
                             transition={{ duration: 0.8, ease: "easeOut" }}
                             className="absolute top-[45%] left-6 md:left-20 max-w-xl z-20"
                         >
-                            <h1 className="text-5xl md:text-7xl mb-6 font-bold leading-tight">Hello, <br /> My Name is <br /> <span className="text-emerald-500">Ahmed Youssef</span></h1>
+                            <h1 className="text-5xl md:text-7xl mb-6 font-bold leading-tight">Hello, <br /> My Name is <br /> <span className="text-violet-400">Ahmed Youssef</span></h1>
                             <p className="text-xl md:text-2xl font-sans text-white/70">Motion Designer and Video Editor driven by the art of cinematic storytelling.</p>
                         </motion.div>
 

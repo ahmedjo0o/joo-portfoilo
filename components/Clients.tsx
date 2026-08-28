@@ -12,7 +12,7 @@ export default function Clients() {
         <section className="py-20 bg-black border-y border-white/5">
             <div className="container mx-auto px-6">
                 <div className="mb-12 text-center w-full">
-                    <h2 className="text-xl md:text-2xl font-serif !text-green-500 uppercase tracking-widest">
+                    <h2 className="text-xl md:text-2xl font-display !text-violet-500 uppercase tracking-widest">
                         Trusted By
                     </h2>
                 </div>
@@ -21,7 +21,7 @@ export default function Clients() {
                     {CLIENTS.map((client, i) => (
                         <div
                             key={i}
-                            className="text-2xl md:text-3xl font-bold text-white hover:text-green-500 transition-colors duration-300 cursor-default select-none group"
+                            className="text-2xl md:text-3xl font-bold text-white hover:text-violet-500 transition-colors duration-300 cursor-default select-none group"
                         >
                             {client}
                         </div>

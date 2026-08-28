@@ -21,6 +21,7 @@ export default function Header() {
 
     const navLinks = [
         { name: "Home", href: "/" },
+        { name: "About", href: "/#about" },
         { name: "Showreel", href: "/#showreel" },
         { name: "Portfolio", href: "/portfolio" },
         { name: "Work", href: "/#work" },
@@ -35,8 +36,9 @@ export default function Header() {
                 }`}
         >
             <div className="container mx-auto px-6 flex items-center justify-between">
-                <Link href="/" className="text-2xl font-bold tracking-tighter hover:text-white/80 transition-colors">
-                    AHMED YOUSSEF
+                <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/brand/logo-horizontal.png" alt="Ahmed Youssef" className="h-8 md:h-10 w-auto invert" />
                 </Link>
                 <nav className="hidden md:flex gap-8">
                     {navLinks.map((link) => (
