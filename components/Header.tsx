@@ -24,8 +24,8 @@ export default function Header() {
         { name: "About", href: "/#about" },
         { name: "Showreel", href: "/#showreel" },
         { name: "Portfolio", href: "/portfolio" },
-        { name: "Work", href: "/#work" },
         { name: "Creative", href: "/#creative-experience" },
+        { name: "Work", href: "/#work" },
         { name: "Clients", href: "/#clients" },
         { name: "Contact", href: "/#contact" },
     ];
@@ -38,7 +38,7 @@ export default function Header() {
             <div className="container mx-auto px-6 flex items-center justify-between">
                 <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/brand/logo-horizontal.png" alt="Ahmed Youssef" className="h-8 md:h-10 w-auto invert" />
+                    <img src="/brand/logo-horizontal.svg" alt="Ahmed Youssef" className="h-8 md:h-10 w-auto invert" />
                 </Link>
                 <nav className="hidden md:flex gap-8">
                     {navLinks.map((link) => (

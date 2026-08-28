@@ -1,11 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import OrgLogo from "./OrgLogo";
 
 export default function ProfessionalExperience() {
     return (
         <section className="min-h-screen py-20 px-6 text-white flex flex-col justify-center relative bg-[url('/experience.jpg')] bg-cover bg-center bg-no-repeat bg-black/80 bg-blend-overlay">
-            <div className="max-w-4xl w-full mx-auto">
+            <div className="max-w-5xl w-full mx-auto">
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
@@ -19,28 +20,32 @@ export default function ProfessionalExperience() {
                     </p>
                 </motion.div>
 
-                <div className="flex flex-col gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {[
                         {
                             company: "Middle East News FZ LLC",
+                            logo: "/brand/organizations/politicsless.svg",
                             role: "Senior Motion Designer",
                             dates: "2024 - Now",
                             details: "Create 2D & 3D Motion Graphics and edit videos for (Politicsless) on all digital platforms, enhancing creative quality of team and create templates for editors."
                         },
                         {
                             company: "Influence Group",
+                            logo: "/brand/organizations/influence.svg",
                             role: "Senior Motion Designer",
                             dates: "2019 - 2024",
                             details: "Work for events management and digital agency, create dynamic animations and graphics for events, promotional videos, and digital content. Develop concepts, storyboard, design, edit, and collaborate with art team to ensure high-quality, brand-consistent visuals."
                         },
                         {
                             company: "Enjoy Learning VR (Startup)",
+                            logo: "/brand/organizations/elvr.svg",
                             role: "Motion Graphic Lead",
                             dates: "2018 - 2019",
                             details: "Responsible for developing spectacular creative for a startup company. Create 3D motion graphics and VR videos for educational content. Participate in all phases of the design process, including concept development, animation, graphic design, and post-production."
                         },
                         {
                             company: "Sarmady",
+                            logo: "/brand/organizations/sarmady.svg",
                             role: "Motion Designer",
                             dates: "2016 - 2018",
                             details: "Create 2D & 3D motion graphic videos, animations and live video content for a diverse array of media, including social media, websites and television, as well as live coverage of sports matches, events and more."
@@ -52,21 +57,22 @@ export default function ProfessionalExperience() {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: i * 0.1 }}
                             viewport={{ once: true }}
-                            className="group flex flex-col md:flex-row items-center gap-6 p-6 border border-white/5 rounded-2xl hover:bg-white/5 transition-all duration-300"
+                            className="group flex flex-col gap-4 p-6 border border-white/5 rounded-2xl hover:bg-white/5 transition-all duration-300"
                         >
-                            {/* Placeholder Logo */}
-                            <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-2xl font-bold text-violet-500">
-                                {row.company[0]}
+                            <div className="flex items-start gap-4">
+                                <OrgLogo src={row.logo} alt={row.company} className="w-10 h-10 mt-1" />
+                                <h3 className="text-lg md:text-xl font-bold text-white leading-snug">
+                                    {row.company}
+                                    <span className="text-white/30 mx-2">—</span>
+                                    {row.role}
+                                    <span className="text-white/30 mx-2">—</span>
+                                    <span className="text-violet-400 font-mono text-base">{row.dates}</span>
+                                </h3>
                             </div>
 
-                            <div className="flex-1 text-center md:text-left">
-                                <h3 className="text-xl font-bold text-white">{row.role}</h3>
-                                <div className="text-violet-400 text-sm font-mono mt-1">{row.dates}</div>
-                            </div>
-
-                            <div className="flex-1 text-center md:text-right text-white/50 text-sm md:text-base">
+                            <p className="text-white/50 text-sm md:text-base">
                                 {row.details}
-                            </div>
+                            </p>
                         </motion.div>
                     ))}
                 </div>

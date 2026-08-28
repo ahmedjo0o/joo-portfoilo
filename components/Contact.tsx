@@ -44,7 +44,7 @@ export default function Contact() {
 
             <footer className="absolute bottom-6 left-0 w-full flex flex-col items-center gap-3 text-white/30 text-sm">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/brand/logo-horizontal-tagline.png" alt="Ahmed Youssef — Motion Graphics & VFX Artist" className="h-6 md:h-8 w-auto invert opacity-90" />
+                <img src="/brand/logo-horizontal-tagline.svg" alt="Ahmed Youssef — Motion Graphics & VFX Artist" className="h-6 md:h-8 w-auto invert opacity-90" />
                 <span>&copy; 2026 Ahmed Youssef. All rights reserved.</span>
             </footer>
         </section>
