@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { Project } from "@/data/projects";
 import PlaceholderMedia from "./PlaceholderMedia";
@@ -17,7 +16,12 @@ export default function PortfolioGrid({ projects }: { projects: Project[] }) {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: i * 0.05, ease: EASE }}
                 >
-                    <Link href={`/portfolio/${project.slug}`} className="group block">
+                    <a
+                        href={project.behanceUrl || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group block"
+                    >
                         <motion.div
                             className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10"
                             whileHover="hover"
@@ -37,24 +41,29 @@ export default function PortfolioGrid({ projects }: { projects: Project[] }) {
                                         className="w-full h-full object-cover"
                                     />
                                 ) : (
-                                    <PlaceholderMedia label="Image" gradient={project.gradient} text={project.title} />
+                                    <PlaceholderMedia
+                                        label="Image"
+                                        gradient="from-zinc-800 via-zinc-900 to-black"
+                                        text={project.title}
+                                    />
                                 )}
                             </motion.div>
 
                             <motion.div
-                                variants={{ rest: { opacity: 0.35 }, hover: { opacity: 0.75 } }}
-                                transition={{ duration: 0.5 }}
-                                className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent"
+                                variants={{ rest: { opacity: 0 }, hover: { opacity: 0.6 } }}
+                                transition={{ duration: 0.4, ease: EASE }}
+                                className="absolute inset-0 bg-black"
                             />
 
                             <motion.div
-                                variants={{ rest: { y: 12, opacity: 0.85 }, hover: { y: 0, opacity: 1 } }}
-                                transition={{ duration: 0.6, ease: EASE }}
-                                className="absolute left-0 right-0 bottom-0 p-5 md:p-6"
+                                variants={{ rest: { opacity: 0, y: -8 }, hover: { opacity: 1, y: 0 } }}
+                                transition={{ duration: 0.5, ease: EASE }}
+                                className="absolute left-0 right-0 top-0 p-6"
                             >
-                                <h3 className="text-lg md:text-xl font-bold text-white leading-snug">
+                                <h3 className="text-xl md:text-2xl font-bold text-white leading-snug mb-1">
                                     {project.title}
                                 </h3>
+                                <p className="text-white/70 text-sm">{project.subtitle}</p>
                             </motion.div>
 
                             <motion.div
@@ -67,7 +76,7 @@ export default function PortfolioGrid({ projects }: { projects: Project[] }) {
                                 </svg>
                             </motion.div>
                         </motion.div>
-                    </Link>
+                    </a>
                 </motion.div>
             ))}
         </div>
