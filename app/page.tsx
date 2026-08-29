@@ -6,6 +6,7 @@ import Clients from "@/components/Clients";
 import Contact from "@/components/Contact";
 
 import Showreel from "@/components/Showreel";
+import Portfolio from "@/components/Portfolio";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <div id="home"><VisualScroll /></div>
       <div id="about"><About /></div>
       <div id="showreel"><Showreel /></div>
+      <div id="portfolio"><Portfolio /></div>
       <div id="creative-experience"><CreativeExperience /></div>
       <div id="work"><ProfessionalExperience /></div>
       <div id="clients"><Clients /></div>
