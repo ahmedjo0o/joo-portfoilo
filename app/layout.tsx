@@ -4,14 +4,13 @@ import "./globals.css";
 import Header from "@/components/Header";
 
 const roboto = Roboto({
-  weight: ["100", "300", "400", "500", "700", "900"],
+  weight: ["400", "500", "700"],
   subsets: ["latin"],
   variable: "--font-roboto",
 });
 
 const barlowCondensed = Barlow_Condensed({
-  weight: ["500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
+  weight: ["500", "700"],
   subsets: ["latin"],
   variable: "--font-barlow-condensed",
 });

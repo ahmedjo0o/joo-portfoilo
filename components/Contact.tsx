@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function Contact() {
     return (
-        <section className="min-h-screen relative flex flex-col justify-center bg-[url('/brand/contact-photo.png')] bg-cover bg-center bg-no-repeat text-white">
+        <section className="min-h-screen relative flex flex-col justify-center bg-[url('/brand/contact-photo.webp')] bg-cover bg-center bg-no-repeat text-white">
             <div className="absolute inset-0 bg-black/40 pointer-events-none" />
             <div className="w-full max-w-7xl mx-auto px-6 flex flex-col justify-center h-full pointer-events-none relative">
                 <motion.div
