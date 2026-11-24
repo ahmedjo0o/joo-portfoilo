@@ -4,7 +4,7 @@ import { motion, useMotionValueEvent, useScroll, useTransform, MotionValue } fro
 import { useEffect, useRef } from "react";
 import { HERO_CHAPTERS, PROFILE } from "@/data/content";
 import { useSite } from "./SiteProvider";
-import { FRAME_COUNT, IMAGE_COUNT, SEQUENCE_FRAMES, frameSrc, loadOrder } from "./sequence";
+import { FRAME_COUNT, IMAGE_COUNT, NEXT_START, RUN_START, SEQUENCE_FRAMES, frameSrc, loadOrder } from "./sequence";
 import { ScrambleText, ScrollWords, SplitReveal, timecode, EASE_EXPO } from "./primitives";
 
 // Scroll range (0-1 of the hero) over which the image sequence plays.
@@ -70,13 +70,14 @@ export default function Hero() {
         if (!canvas || !ctx) return;
 
         const f = Math.min(FRAME_COUNT - 1, Math.max(0, frame));
-        const i0 = Math.floor(f);
-        const i1 = Math.min(FRAME_COUNT - 1, i0 + 1);
+        const i = Math.floor(f);
         const images = imagesRef.current;
-        let a = images[SEQUENCE_FRAMES[i0]];
-        let b = images[SEQUENCE_FRAMES[i1]];
-        let t = f - i0;
-        if (!a || !b) {
+        const next = NEXT_START[i];
+        let a = images[SEQUENCE_FRAMES[i]];
+        let b = next >= 0 ? images[SEQUENCE_FRAMES[next]] : undefined;
+        // Blend across the whole run of this image towards the next one.
+        let t = next >= 0 ? (f - RUN_START[i]) / (next - RUN_START[i]) : 0;
+        if (!a || (next >= 0 && !b)) {
             a = nearestLoaded(f);
             b = undefined;
             t = 0;
@@ -141,7 +142,7 @@ export default function Hero() {
 
     useMotionValueEvent(frameIndex, "change", (latest) => {
         scheduleRender();
-        if (tcRef.current) tcRef.current.textContent = timecode(latest);
+        if (tcRef.current) tcRef.current.textContent = timecode(latest, 60);
     });
 
     useEffect(() => {
@@ -197,7 +198,7 @@ export default function Hero() {
                     <span className="flex items-center gap-2">
                         <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-[rec_1.2s_ease-in-out_infinite]" />
                         Rec
-                        <span className="hidden text-paper/35 sm:inline">· 24 fps · 1920×1080</span>
+                        <span className="hidden text-paper/35 sm:inline">· 60 fps · 1920×1080</span>
                     </span>
                     <span ref={tcRef}>00:00:00:00</span>
                 </motion.div>
