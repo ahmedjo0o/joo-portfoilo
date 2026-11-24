@@ -3,7 +3,7 @@ Builds the web-ready scroll sequence used by components/VisualScroll.tsx.
 
 Input : a folder of full-size frames named person_00000.jpg, person_00001.jpg, ...
 Output: public/sequence/1280/NNN.webp and public/sequence/960/NNN.webp
-        components/sequenceManifest.ts (maps each scroll frame to an image file)
+        components/site/sequenceManifest.ts (maps each scroll frame to an image file)
 
 It keeps every STEP-th frame, stores identical (held) frames only once, and
 re-encodes them as WebP at two widths (desktop and mobile).
@@ -23,7 +23,7 @@ SIZES = {1280: 80, 960: 78}  # width -> WebP quality
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = ROOT / "public" / "sequence"
-MANIFEST = ROOT / "components" / "sequenceManifest.ts"
+MANIFEST = ROOT / "components" / "site" / "sequenceManifest.ts"
 
 
 def main() -> None:

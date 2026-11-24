@@ -25,6 +25,9 @@ jobs:
 
       - run: npm ci
       - run: npm run build
+        env:
+          # Pull request previews show the full site even before launch (see lib/site.ts).
+          NEXT_PUBLIC_SHOW_FULL_SITE: ${{ github.event_name == 'pull_request' && 'true' || '' }}
 
       - name: Check Firebase is set up
         id: setup
