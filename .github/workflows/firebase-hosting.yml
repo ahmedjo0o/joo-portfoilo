@@ -1,0 +1,48 @@
+name: Deploy to Firebase Hosting
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Pull requests from forks can't read secrets, so skip previews for them.
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Check Firebase is set up
+        id: setup
+        env:
+          SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          if [ -z "$SA" ] || grep -q REPLACE_WITH_FIREBASE_PROJECT_ID .firebaserc; then
+            echo "Firebase secret or project ID not set yet; build checked, skipping deploy."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # main -> live site; pull requests -> a temporary preview URL posted on the PR.
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        if: steps.setup.outputs.ready == 'true'
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          channelId: ${{ github.event_name == 'push' && 'live' || '' }}
+          expires: 7d
