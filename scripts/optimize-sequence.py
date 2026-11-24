@@ -18,8 +18,8 @@ from pathlib import Path
 
 from PIL import Image
 
-STEP = 2  # keep every 2nd frame
-SIZES = {1280: 80, 960: 78}  # width -> WebP quality
+STEP = 1  # keep every frame (24 fps source; the hero also crossfades between frames)
+SIZES = {1280: 72, 960: 70}  # width -> WebP quality
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = ROOT / "public" / "sequence"

@@ -16,7 +16,7 @@ export default function Hero() {
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const imagesRef = useRef<(HTMLImageElement | undefined)[]>([]);
-    const drawnRef = useRef<HTMLImageElement | null>(null);
+    const drawnRef = useRef("");
     const tcRef = useRef<HTMLSpanElement>(null);
 
     const { scrollYProgress: p } = useScroll({ target: containerRef, offset: ["start start", "end end"] });
@@ -39,6 +39,7 @@ export default function Hero() {
     const vignette = useTransform(p, [0.1, 0.2, 0.9, 1], [0, 0.55, 0.55, 0.75]);
 
     // ---- image sequence -------------------------------------------------------
+    // Nearest loaded image to a scroll frame (used while the sequence is still loading).
     const nearestLoaded = (frame: number) => {
         const images = imagesRef.current;
         const target = SEQUENCE_FRAMES[Math.min(FRAME_COUNT - 1, Math.max(0, Math.round(frame)))];
@@ -51,23 +52,62 @@ export default function Hero() {
         return undefined;
     };
 
-    const renderFrame = (frame: number, force = false) => {
-        const canvas = canvasRef.current;
-        const ctx = canvas?.getContext("2d");
-        const img = nearestLoaded(frame);
-        if (!canvas || !ctx || !img) return;
-        if (img === drawnRef.current && !force) return;
-        drawnRef.current = img;
-
+    const drawImage = (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, img: HTMLImageElement) => {
         // Cover on wide screens; on tall phones, zoom in but don't crop to a sliver.
         const cover = Math.max(canvas.width / img.naturalWidth, canvas.height / img.naturalHeight);
         const contain = Math.min(canvas.width / img.naturalWidth, canvas.height / img.naturalHeight);
         const scale = Math.min(cover, contain * 1.9);
         const w = img.naturalWidth * scale;
         const h = img.naturalHeight * scale;
+        ctx.drawImage(img, (canvas.width - w) / 2, (canvas.height - h) / 2, w, h);
+    };
+
+    // Draws the frame at a fractional position, crossfading the two neighbouring
+    // images so the sequence moves smoothly between source frames.
+    const renderFrame = (frame: number, force = false) => {
+        const canvas = canvasRef.current;
+        const ctx = canvas?.getContext("2d");
+        if (!canvas || !ctx) return;
+
+        const f = Math.min(FRAME_COUNT - 1, Math.max(0, frame));
+        const i0 = Math.floor(f);
+        const i1 = Math.min(FRAME_COUNT - 1, i0 + 1);
+        const images = imagesRef.current;
+        let a = images[SEQUENCE_FRAMES[i0]];
+        let b = images[SEQUENCE_FRAMES[i1]];
+        let t = f - i0;
+        if (!a || !b) {
+            a = nearestLoaded(f);
+            b = undefined;
+            t = 0;
+        }
+        if (!a) return;
+        if (a === b) b = undefined;
+
+        // Quantise the blend so tiny scroll moves don't redraw needlessly.
+        const key = `${a.src}|${b && t > 0.02 ? b.src : ""}|${b ? Math.round(t * 24) : 0}`;
+        if (key === drawnRef.current && !force) return;
+        drawnRef.current = key;
+
+        ctx.globalAlpha = 1;
         ctx.fillStyle = "#050505";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(img, (canvas.width - w) / 2, (canvas.height - h) / 2, w, h);
+        drawImage(ctx, canvas, a);
+        if (b && t > 0.02) {
+            ctx.globalAlpha = t;
+            drawImage(ctx, canvas, b);
+            ctx.globalAlpha = 1;
+        }
+    };
+
+    // Draw at most once per animation frame.
+    const rafRef = useRef(0);
+    const scheduleRender = () => {
+        if (rafRef.current) return;
+        rafRef.current = requestAnimationFrame(() => {
+            rafRef.current = 0;
+            renderFrame(frameIndex.get());
+        });
     };
 
     useEffect(() => {
@@ -86,7 +126,7 @@ export default function Hero() {
                 .then(() => {
                     if (cancelled) return;
                     imagesRef.current[id] = img;
-                    renderFrame(frameIndex.get());
+                    scheduleRender();
                 })
                 .catch(() => {})
                 .finally(loadNext);
@@ -100,8 +140,8 @@ export default function Hero() {
     }, []);
 
     useMotionValueEvent(frameIndex, "change", (latest) => {
-        requestAnimationFrame(() => renderFrame(latest));
-        if (tcRef.current) tcRef.current.textContent = timecode(latest * 2);
+        scheduleRender();
+        if (tcRef.current) tcRef.current.textContent = timecode(latest);
     });
 
     useEffect(() => {

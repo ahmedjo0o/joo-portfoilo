@@ -3,7 +3,9 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useSite } from "./SiteProvider";
-import { firstFrameSrc } from "./sequence";
+import { FRAME_COUNT, firstFrameSrc } from "./sequence";
+
+const LAST = String(FRAME_COUNT - 1).padStart(4, "0");
 
 const MIN_MS = 1400;
 const MAX_MS = 4000;
@@ -44,7 +46,7 @@ export default function Preloader() {
             const pct = Math.round(shown * 100);
             if (countRef.current) countRef.current.textContent = String(pct).padStart(3, "0");
             if (barRef.current) barRef.current.style.transform = `scaleX(${shown})`;
-            if (frameRef.current) frameRef.current.textContent = String(Math.round(shown * 108)).padStart(4, "0");
+            if (frameRef.current) frameRef.current.textContent = String(Math.round(shown * (FRAME_COUNT - 1))).padStart(4, "0");
 
             if (shown >= 1 && !done) {
                 done = true;
@@ -76,7 +78,7 @@ export default function Preloader() {
                             Rendering
                         </span>
                         <span>
-                            Frame <span ref={frameRef}>0000</span> / 0108
+                            Frame <span ref={frameRef}>0000</span> / {LAST}
                         </span>
                     </div>
 

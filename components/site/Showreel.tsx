@@ -39,7 +39,7 @@ export default function Showreel() {
                             >
                                 <motion.span className="absolute inset-0 block" style={{ scale: posterScale }}>
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img src="/sequence/1280/080.webp" alt="" loading="lazy" className="h-full w-full object-cover opacity-70 transition-opacity duration-700 group-hover:opacity-90" />
+                                    <img src="/reel-poster.webp" alt="" loading="lazy" className="h-full w-full object-cover opacity-70 transition-opacity duration-700 group-hover:opacity-90" />
                                 </motion.span>
                                 <span className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-ink/30" />
                                 <span className="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-paper/60 backdrop-blur-sm transition-transform duration-500 group-hover:scale-110 md:h-28 md:w-28">
