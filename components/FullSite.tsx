@@ -1,0 +1,27 @@
+import Header from "@/components/Header";
+import VisualScroll from "@/components/VisualScroll";
+import About from "@/components/About";
+import CreativeExperience from "@/components/CreativeExperience";
+import ProfessionalExperience from "@/components/ProfessionalExperience";
+import Clients from "@/components/Clients";
+import Contact from "@/components/Contact";
+import Showreel from "@/components/Showreel";
+import Portfolio from "@/components/Portfolio";
+
+export default function FullSite() {
+  return (
+    <>
+      <Header />
+      <main className="min-h-screen bg-black">
+        <div id="home"><VisualScroll /></div>
+        <div id="about"><About /></div>
+        <div id="showreel"><Showreel /></div>
+        <div id="portfolio"><Portfolio /></div>
+        <div id="creative-experience"><CreativeExperience /></div>
+        <div id="work"><ProfessionalExperience /></div>
+        <div id="clients"><Clients /></div>
+        <div id="contact"><Contact /></div>
+      </main>
+    </>
+  );
+}

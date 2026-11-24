@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
 
 const roboto = Roboto({
   weight: ["400", "500", "700"],
@@ -30,7 +29,6 @@ export default function RootLayout({
       <body
         className={`${roboto.variable} ${barlowCondensed.variable} antialiased font-sans bg-black text-white/70`}
       >
-        <Header />
         {children}
       </body>
     </html>
