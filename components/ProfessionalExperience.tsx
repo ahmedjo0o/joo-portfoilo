@@ -5,7 +5,7 @@ import OrgLogo from "./OrgLogo";
 
 export default function ProfessionalExperience() {
     return (
-        <section className="min-h-screen py-20 px-6 text-white flex flex-col justify-center relative bg-[url('/experience.jpg')] bg-cover bg-center bg-no-repeat bg-black/80 bg-blend-overlay">
+        <section className="min-h-screen py-20 px-6 text-white flex flex-col justify-center relative bg-[url('/experience.webp')] bg-cover bg-center bg-no-repeat bg-black/80 bg-blend-overlay">
             <div className="max-w-5xl w-full mx-auto">
                 <motion.div
                     initial={{ opacity: 0 }}

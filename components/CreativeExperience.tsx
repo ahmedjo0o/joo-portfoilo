@@ -13,7 +13,7 @@ const skills = [
 
 export default function CreativeExperience() {
     return (
-        <section className="min-h-screen py-20 px-6 flex items-center justify-center text-white relative bg-[url('/creative.jpg')] bg-cover bg-center bg-no-repeat bg-black/70 bg-blend-overlay">
+        <section className="min-h-screen py-20 px-6 flex items-center justify-center text-white relative bg-[url('/creative.webp')] bg-cover bg-center bg-no-repeat bg-black/70 bg-blend-overlay">
             <div className="max-w-4xl w-full">
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}

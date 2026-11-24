@@ -1,7 +1,5 @@
 "use client";
 
-import Script from "next/script";
-
 export default function Showreel() {
     return (
         <section className="bg-black py-20 border-y border-white/5">
@@ -16,11 +14,11 @@ export default function Showreel() {
                             referrerPolicy="strict-origin-when-cross-origin"
                             style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
                             title="My Reel 2016"
+                            loading="lazy"
                         />
                     </div>
                 </div>
             </div>
-            <Script src="https://player.vimeo.com/api/player.js" strategy="lazyOnload" />
         </section>
     );
 }
