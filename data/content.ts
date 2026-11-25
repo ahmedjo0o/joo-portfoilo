@@ -4,7 +4,7 @@ export const PROFILE = {
     firstName: "Ahmed",
     lastName: "Youssef",
     title: "Motion Graphics & VFX Artist",
-    email: "ayoussef.me@gmail.com",
+    email: "contact@ahmedyoussef.net",
     phone: "(+20) 106 086 0503",
     phoneHref: "tel:+201060860503",
     behance: "https://www.behance.net/ahmedjoo",
