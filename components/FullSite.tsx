@@ -1,27 +1,33 @@
-import Header from "@/components/Header";
-import VisualScroll from "@/components/VisualScroll";
-import About from "@/components/About";
-import CreativeExperience from "@/components/CreativeExperience";
-import ProfessionalExperience from "@/components/ProfessionalExperience";
-import Clients from "@/components/Clients";
-import Contact from "@/components/Contact";
-import Showreel from "@/components/Showreel";
-import Portfolio from "@/components/Portfolio";
+import SiteProvider from "@/components/site/SiteProvider";
+import Preloader from "@/components/site/Preloader";
+import Cursor from "@/components/site/Cursor";
+import Nav from "@/components/site/Nav";
+import TimelineHUD from "@/components/site/TimelineHUD";
+import Hero from "@/components/site/Hero";
+import About from "@/components/site/About";
+import Showreel from "@/components/site/Showreel";
+import Work from "@/components/site/Work";
+import Toolkit from "@/components/site/Toolkit";
+import Experience from "@/components/site/Experience";
+import Contact from "@/components/site/Contact";
 
 export default function FullSite() {
-  return (
-    <>
-      <Header />
-      <main className="min-h-screen bg-black">
-        <div id="home"><VisualScroll /></div>
-        <div id="about"><About /></div>
-        <div id="showreel"><Showreel /></div>
-        <div id="portfolio"><Portfolio /></div>
-        <div id="creative-experience"><CreativeExperience /></div>
-        <div id="work"><ProfessionalExperience /></div>
-        <div id="clients"><Clients /></div>
-        <div id="contact"><Contact /></div>
-      </main>
-    </>
-  );
+    return (
+        <SiteProvider>
+            <Preloader />
+            <Nav />
+            <main className="relative bg-ink">
+                <Hero />
+                <About />
+                <Showreel />
+                <Work />
+                <Toolkit />
+                <Experience />
+                <Contact />
+            </main>
+            <TimelineHUD />
+            <Cursor />
+            <div className="grain" aria-hidden />
+        </SiteProvider>
+    );
 }

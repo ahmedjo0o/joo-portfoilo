@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 const links = [
-  { label: "Email", value: "ayoussef.me@gmail.com", href: "mailto:ayoussef.me@gmail.com" },
+  { label: "Email", value: "contact@ahmedyoussef.net", href: "mailto:contact@ahmedyoussef.net" },
   { label: "Behance", value: "be.net/ahmedjoo", href: "https://www.behance.net/ahmedjoo" },
 ];
 

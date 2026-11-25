@@ -1,36 +1,49 @@
-import type { Metadata } from "next";
-import { Roboto, Barlow_Condensed } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Barlow_Condensed, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const roboto = Roboto({
-  weight: ["400", "500", "700"],
-  subsets: ["latin"],
-  variable: "--font-roboto",
+const display = Barlow_Condensed({
+    weight: ["500", "600", "800", "900"],
+    subsets: ["latin"],
+    variable: "--font-barlow-condensed",
 });
 
-const barlowCondensed = Barlow_Condensed({
-  weight: ["500", "700"],
-  subsets: ["latin"],
-  variable: "--font-barlow-condensed",
+const sans = Inter({
+    subsets: ["latin"],
+    variable: "--font-inter",
+});
+
+const mono = JetBrains_Mono({
+    weight: ["400", "500"],
+    subsets: ["latin"],
+    variable: "--font-jetbrains",
 });
 
 export const metadata: Metadata = {
-  title: "Ahmed Youssef - Motion Designer",
-  description: "Motion Designer and Video Editor specializing in cinematic storytelling.",
+    title: "Ahmed Youssef · Motion Graphics & VFX Artist",
+    description:
+        "Ahmed Youssef is a Cairo-based senior motion designer creating cinematic 2D & 3D motion graphics, VFX and edits.",
+    metadataBase: new URL("https://www.ahmedyoussef.net"),
+    openGraph: {
+        title: "Ahmed Youssef · Motion Graphics & VFX Artist",
+        description: "Cinematic 2D & 3D motion graphics, VFX and edits.",
+        url: "https://www.ahmedyoussef.net",
+        siteName: "Ahmed Youssef",
+        images: ["/brand/contact-photo.webp"],
+        type: "website",
+    },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <body
-        className={`${roboto.variable} ${barlowCondensed.variable} antialiased font-sans bg-black text-white/70`}
-      >
-        {children}
-      </body>
-    </html>
-  );
+export const viewport: Viewport = {
+    themeColor: "#050505",
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+    return (
+        <html lang="en">
+            <body className={`${display.variable} ${sans.variable} ${mono.variable} antialiased`}>
+                {children}
+            </body>
+        </html>
+    );
 }
